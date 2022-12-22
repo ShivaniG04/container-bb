@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: eks-bb-inventory
+  namespace: eks-bb
+data:
+  TZ: "Asia/Kolkata"
+  REGION: "ap-south-1"
+  DBHOST: "ecom.couf0zdqclwp.ap-south-1.rds.amazonaws.com"
+  DBPORT: "3306"
+  DBUSER: "pod_user"
+  DBNAME: "ekssagadb"
+  POLL_FREQUENCY: "20"
+  INPT_QUEUE_URL: "https://sqs.ap-south-1.amazonaws.com/902812008909/inventory-input"
+  SUCC_TOPIC_ARN: "arn:aws:sns:ap-south-1:902812008909:inventory-success"
+  FAIL_TOPIC_ARN: "arn:aws:sns:ap-south-1:902812008909:inventory-fail"
+~                                                                        

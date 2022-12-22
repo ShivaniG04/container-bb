@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: eks-bb
+  name: eks-bb-orchestrator
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: eks-bb-orchestrator
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: eks-bb-orchestrator
+    spec:
+      serviceAccountName: eks-bb
+      containers:
+        - name: eks-bb-orchestrator
+          image: 902812008909.dkr.ecr.ap-south-1.amazonaws.com/eks-bb-orchestrator:latest
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: eks-bb-orchestrator
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "64m"
+          ports:
+            - containerPort: 8080
+              protocol: "TCP"
